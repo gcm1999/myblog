@@ -3,6 +3,9 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" class="brand" src="@/assets/images/brand.png" />
+        </a>
         <button
           type="button"
           class="navbar-toggle collapsed"
@@ -15,14 +18,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">首页</a>
+        <a class="navbar-brand" href="#">F6博客</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active">
-            <a href="#">个人简介 <span class="sr-only">(current)</span></a>
+            <a href="#"
+              >首页
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
           </li>
           <li><a href="#">知识点</a></li>
           <li class="dropdown">
@@ -52,14 +58,28 @@
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-left">
+        <div class="navbar-form navbar-left">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="输入关键字" />
+            <input
+              type="text"
+              class="form-control"
+              v-model="keywords"
+              placeholder="输入关键字"
+            />
           </div>
-          <button type="submit" class="btn btn-default">搜索</button>
-        </form>
+          <button
+            type="submit"
+            class="btn btn-default search-btn"
+            @click="goSearch"
+          >
+            搜索
+          </button>
+        </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">留言板</a></li>
+          <li>
+            <!-- <a href="#">留言板</a> -->
+            <router-link to="/messageboard">留言板</router-link>
+          </li>
           <li class="dropdown">
             <a
               href="#"
@@ -75,7 +95,14 @@
               <li><a href="#">测烈</a></li>
               <li><a href="#">索利亚给同</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li>
+                <a
+                  href="https://github.com/gcm1999"
+                  class="link-new glyphicon glyphicon-new-window"
+                  target="_blank"
+                  >GitHub</a
+                >
+              </li>
             </ul>
           </li>
         </ul>
@@ -86,9 +113,27 @@
   </nav>
 </template>
 <script>
+import { ref } from "vue";
+import router from "@/router";
 export default {
-  name: "Home",
-  setup() {},
+  name: "Header",
+  setup() {
+    let keywords = ref("");
+
+    function goSearch() {
+      router.push(`/search?${keywords.value}`);
+      keywords.value = "";
+    }
+
+    return { keywords, goSearch };
+  },
 };
 </script>
-<style scoped></style>
+<style scoped lang="stylus">
+.navbar
+  margin-bottom 0
+.search-btn
+  outline 0!important
+.brand
+  height 100%
+</style>
