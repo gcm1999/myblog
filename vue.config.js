@@ -5,7 +5,7 @@ module.exports = defineConfig({
   // 代理跨域
   devServer: {
     proxy: {
-      "/api": {
+      "/blogApi": {
         target: "http://gcm.cool:3001",
         // pathRewrite: {},
         changeOrigin: true,

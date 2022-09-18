@@ -32,19 +32,29 @@ export default {
       message: "",
     });
     onMounted(() => {
-      reqGetMessageList().then((res) => {
-        // console.log(res);
-        data.messageList = res.data;
-      });
+      getMessageList();
     });
 
     const RefData = toRefs(data);
 
+    function getMessageList() {
+      reqGetMessageList().then((res) => {
+        // console.log(res);
+        data.messageList = res.data;
+      });
+    }
+
     function setMessage() {
       const queryParam = { user: data.user, message: data.message };
-      reqSetMessage(queryParam).then(res => {
-        console.log(res);
-      });
+      if (data.user && data.message) {
+        reqSetMessage(queryParam).then((res) => {
+          data.user = "";
+          data.message = "";
+          getMessageList();
+        });
+      } else {
+        alert("打点字再提交啊大哥o.O");
+      }
     }
 
     return { ...RefData, setMessage };

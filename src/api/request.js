@@ -10,7 +10,7 @@ import nprogress from "nprogress";
 import "nprogress/nprogress.css";
 
 const request = axios.create({
-  baseURL: "/api",
+  baseURL: "/blogApi",
   timeout: 5000,
 });
 // 请求拦截器：再发送请求之前，请求拦截器可以检测到，可以在发送请求之前做一些事情
