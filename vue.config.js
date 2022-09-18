@@ -2,5 +2,15 @@ const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
-  publicPath:"/myblog"
+  // 代理跨域
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://gcm.cool:3001",
+        // pathRewrite: {},
+        changeOrigin: true,
+      },
+    },
+  },
+  publicPath: "/myblog",
 });

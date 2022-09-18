@@ -24,11 +24,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="#"
+          <li class="activ">
+            <router-link to="/home">首页</router-link>
+            <!-- <a href="#"
               >首页
-              <!-- <span class="sr-only">(current)</span> -->
-            </a>
+              <span class="sr-only">(current)</span>
+            </a> -->
           </li>
           <li><a href="#">知识点</a></li>
           <li class="dropdown">
