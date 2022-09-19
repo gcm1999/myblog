@@ -7,6 +7,7 @@
         type="text"
         v-model="message"
       />
+
       <input type="button" value="提交" @click="setMessage" />
     </li>
     <li
@@ -14,7 +15,7 @@
       v-for="(msg, index) in messageList"
       :key="msg.id"
     >
-      <span class="badge">{{ msg.time.slice(0, 19) }}</span>
+      <span class="badge">{{ timeHandler(msg.time) }}</span>
       {{ msg.user }}:
       {{ msg.msg }}
     </li>
@@ -23,12 +24,13 @@
 <script>
 import { reqGetMessageList, reqSetMessage } from "@/api";
 import { onMounted, reactive, toRefs } from "vue";
+import { getUser, setUser, timeHandler } from "@/utils";
 export default {
   name: "",
   setup() {
     const data = reactive({
-      messageList: {},
-      user: "",
+      messageList: [],
+      user: getUser() || "",
       message: "",
     });
     onMounted(() => {
@@ -39,17 +41,16 @@ export default {
 
     function getMessageList() {
       reqGetMessageList().then((res) => {
-        // console.log(res);
         data.messageList = res.data;
       });
     }
-
     function setMessage() {
       const queryParam = { user: data.user, message: data.message };
-      if (data.user && data.message) {
+      if (data.user.trim() && data.message.trim()) {
         reqSetMessage(queryParam).then((res) => {
-          data.user = "";
+          // console.log(res);
           data.message = "";
+          setUser(data.user);
           getMessageList();
         });
       } else {
@@ -57,7 +58,7 @@ export default {
       }
     }
 
-    return { ...RefData, setMessage };
+    return { ...RefData, setMessage, timeHandler };
   },
 };
 </script>
