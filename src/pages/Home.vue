@@ -31,6 +31,7 @@
     </div>
     <div class="contents">
       <div class="slider">
+        <img src="@/assets/images/kamier.webp" alt="">
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
@@ -39,34 +40,108 @@
         <div>诺克萨斯</div>
       </div>
       <div class="con">
-        <div>德玛西亚</div>
-        <div>德玛西亚</div>
-        <div>德玛西亚</div>
+        <div
+          class="article"
+          v-for="(article, index) in articleList"
+          :key="article.id"
+        >
+          <div class="title">
+            <a href="#">{{ article.title }}</a>
+          </div>
+          <i class="glyphicon glyphicon-user"></i
+          ><span>{{ article.author }}</span>
+          <i class="glyphicon glyphicon-time"></i
+          ><span>{{ timeHandler(article.time) }}</span>
+          <i class="glyphicon glyphicon-tag hidden-xs"></i><span class="hidden-xs">{{ article.tag }}</span>
+        </div>
+        <!-- 分页器 -->
+        <Pagination
+          :pageNo="articleParams.pageNo"
+          :pageSize="articleParams.pageSize"
+          :total="total"
+          :continues="2"
+          @currentPage="currentPage"
+        ></Pagination>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { reqGetArticleList, reqGetArticleListByPage } from "@/api/index";
+import { onMounted, reactive, toRefs } from "vue";
+import Pagination from "../components/Pagination.vue";
+import { timeHandler } from "@/utils";
 export default {
   name: "",
-  setup() {},
+  setup() {
+    const data = reactive({
+      articleList: [],
+      articleParams: {
+        pageNo: 1,
+        pageSize: 10,
+      },
+      total: 0,
+    });
+
+    onMounted(() => {
+      getArticleList();
+    });
+
+    function getArticleList() {
+      reqGetArticleListByPage(data.articleParams).then((res) => {
+        data.articleList = res.data.articleList;
+        data.total = res.data.total;
+      });
+    }
+
+    const RefData = toRefs(data);
+
+    function currentPage(pageNo) {
+      data.articleParams.pageNo = pageNo;
+      getArticleList();
+      scrollTo(0,0)
+    }
+
+    return { ...RefData, currentPage, timeHandler };
+  },
+  components: { Pagination },
 };
 </script>
 <style scoped lang="stylus">
 .main
+   background-color #eeeeee
   .contents
     max-width 1440px
-    height 900px
-    background-color #eeeeee
     margin 0 auto
     overflow hidden
     .slider
       width 300px
-      background-color pink
+      // background-color pink
+      text-align center
       float right
+      img
+        width 200px
+        height 200px
+        border-radius 50%
     .con
-      margin-right 300px
-      background-color skyblue
+      // margin-right 300px
+      // background-color skyblue
+      overflow hidden
+      .article
+        background-color white
+        padding 10px
+        margin 10px
+        .title
+          a
+            font-size 20px
+            padding-left 8px
+        i
+          color #999
+          padding 8px 5px 5px 8px
+        span
+          color #999
+          font-size 14px
+          padding-right 18px
   .banner
     height 360px
     background-color #eaeaea
@@ -161,4 +236,9 @@ export default {
 @media screen and (max-width: 760px)
   p
     font-size 12px!important
+  .con
+    margin 0
+  .slider
+    width 0!important
+    overflow hidden
 </style>
