@@ -31,7 +31,7 @@
     </div>
     <div class="contents">
       <div class="slider">
-        <img src="@/assets/images/kamier.webp" alt="">
+        <img src="@/assets/images/kamier.webp" alt="" />
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
@@ -46,13 +46,15 @@
           :key="article.id"
         >
           <div class="title">
-            <a href="#">{{ article.title }}</a>
+            <!-- <a href="#">{{ article.title }}</a> -->
+            <router-link :to="article.url">{{ article.title }}</router-link>
           </div>
           <i class="glyphicon glyphicon-user"></i
           ><span>{{ article.author }}</span>
           <i class="glyphicon glyphicon-time"></i
           ><span>{{ timeHandler(article.time) }}</span>
-          <i class="glyphicon glyphicon-tag hidden-xs"></i><span class="hidden-xs">{{ article.tag }}</span>
+          <i class="glyphicon glyphicon-tag hidden-xs"></i
+          ><span class="hidden-xs">{{ article.tag }}</span>
         </div>
         <!-- 分页器 -->
         <Pagination
@@ -99,7 +101,7 @@ export default {
     function currentPage(pageNo) {
       data.articleParams.pageNo = pageNo;
       getArticleList();
-      scrollTo(0,0)
+      scrollTo(0, 0);
     }
 
     return { ...RefData, currentPage, timeHandler };
@@ -116,7 +118,8 @@ export default {
     overflow hidden
     .slider
       width 300px
-      // background-color pink
+      // background-color white
+      margin-top 10px
       text-align center
       float right
       img
@@ -135,6 +138,8 @@ export default {
           a
             font-size 20px
             padding-left 8px
+          a:hover
+            color red
         i
           color #999
           padding 8px 5px 5px 8px
@@ -188,7 +193,7 @@ export default {
         background-color #000
         margin-left 10px
         flex-shrink 0
-        animation: loading 6s infinite;
+        animation: loading 6s linear infinite;
       li:nth-of-type(2)
         animation-delay -5s
       li:nth-of-type(3)
