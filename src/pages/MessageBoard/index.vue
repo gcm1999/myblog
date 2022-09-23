@@ -1,15 +1,7 @@
 <template>
   留言板
   <!-- {{ data.messageList }} -->
-  <div class="msg-box clearFix">
-    <div>
-      <input type="text" v-model="user" class="user" placeholder="用户名" />
-    </div>
-    <div>
-      <textarea type="text" v-model="message" class="user" placeholder="留言内容" />
-    </div>
-    <button @click="setMessage">提交</button>
-  </div>
+  <MessageBox @getMsg="getMessageList"></MessageBox>
 
   <ul class="list-group">
     <!-- <li class="list-group-item">
@@ -37,44 +29,29 @@
   </ul>
 </template>
 <script>
-import { reqGetMessageList, reqSetMessage } from "@/api";
+import { reqGetMessageList } from "@/api";
 import { onMounted, reactive, toRefs } from "vue";
-import { getUser, setUser, timeHandler } from "@/utils";
+import { timeHandler } from "@/utils";
+import MessageBox from "./MessageBox/index.vue";
 export default {
   name: "",
   setup() {
     const data = reactive({
       messageList: [],
-      user: getUser() || "",
-      message: "",
     });
     onMounted(() => {
       getMessageList();
     });
-
     const RefData = toRefs(data);
-
     function getMessageList() {
       reqGetMessageList().then((res) => {
         data.messageList = res.data;
       });
     }
-    function setMessage() {
-      const queryParam = { user: data.user, message: data.message };
-      if (data.user.trim() && data.message.trim()) {
-        reqSetMessage(queryParam).then((res) => {
-          // console.log(res);
-          data.message = "";
-          setUser(data.user);
-          getMessageList();
-        });
-      } else {
-        alert("打点字再提交啊大哥o.O");
-      }
-    }
 
-    return { ...RefData, setMessage, timeHandler };
+    return { ...RefData, timeHandler, getMessageList };
   },
+  components: { MessageBox },
 };
 </script>
 <style lang="stylus" scoped>
@@ -108,23 +85,4 @@ export default {
     background-color: #eee;
     padding 10px
     font-size 16px
-
-.msg-box
-  padding: 10px;
-  background-color: #eee;
-  div
-    padding 10px
-    // background-color white
-    .user
-      // background-color: #eee;
-      outline none
-      border 1px solid black
-    textarea
-      width 100%
-      height 100px
-  button
-    float right
-    padding 3px 5px
-    background-color white
-    border 0
 </style>

@@ -71,7 +71,7 @@
 <script>
 import { reqGetArticleList, reqGetArticleListByPage } from "@/api/index";
 import { onMounted, reactive, toRefs } from "vue";
-import Pagination from "../components/Pagination.vue";
+import Pagination from "@/components/Pagination.vue";
 import { timeHandler } from "@/utils";
 export default {
   name: "",
