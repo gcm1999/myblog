@@ -27,31 +27,59 @@
       </div>
     </li>
   </ul>
+  <!-- 分页器 -->
+  <Pagination
+    :pageNo="messageParams.pageNo"
+    :pageSize="messageParams.pageSize"
+    :total="total"
+    :continues="2"
+    @currentPage="currentPage"
+  ></Pagination>
 </template>
 <script>
-import { reqGetMessageList } from "@/api";
+import { reqGetMessageList, reqGetMessageListByPage } from "@/api";
 import { onMounted, reactive, toRefs } from "vue";
 import { timeHandler } from "@/utils";
 import MessageBox from "./MessageBox/index.vue";
+import Pagination from "@/components/Pagination.vue";
 export default {
   name: "",
   setup() {
     const data = reactive({
       messageList: [],
+      messageParams: {
+        pageNo: 1,
+        pageSize: 10,
+      },
+      total: 0,
     });
     onMounted(() => {
       getMessageList();
     });
     const RefData = toRefs(data);
+
     function getMessageList() {
-      reqGetMessageList().then((res) => {
-        data.messageList = res.data;
+      reqGetMessageListByPage(data.messageParams).then((res) => {
+        // console.log(res);
+        data.messageList = res.data.messageList;
+        data.total = res.data.total;
       });
     }
+    // function getMessageList() {
+    //   reqGetMessageList().then((res) => {
+    //     data.messageList = res.data;
+    //   });
+    // }
 
-    return { ...RefData, timeHandler, getMessageList };
+    function currentPage(pageNo) {
+      data.messageParams.pageNo = pageNo;
+      getMessageList();
+      scrollTo(0, 0);
+    }
+
+    return { ...RefData, timeHandler, getMessageList, currentPage };
   },
-  components: { MessageBox },
+  components: { MessageBox, Pagination },
 };
 </script>
 <style lang="stylus" scoped>

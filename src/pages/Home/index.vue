@@ -56,15 +56,15 @@
           <i class="glyphicon glyphicon-tag hidden-xs"></i
           ><span class="hidden-xs">{{ article.tag }}</span>
         </div>
-        <!-- 分页器 -->
-        <Pagination
-          :pageNo="articleParams.pageNo"
-          :pageSize="articleParams.pageSize"
-          :total="total"
-          :continues="2"
-          @currentPage="currentPage"
-        ></Pagination>
       </div>
+      <!-- 分页器 -->
+      <Pagination
+        :pageNo="articleParams.pageNo"
+        :pageSize="articleParams.pageSize"
+        :total="total"
+        :continues="2"
+        @currentPage="currentPage"
+      ></Pagination>
     </div>
   </div>
 </template>

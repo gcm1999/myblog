@@ -16,18 +16,18 @@
   </div>
 </template>
 <script>
-import {  reqSetMessage } from "@/api";
-import {  reactive, toRefs } from "vue";
+import { reqSetMessage } from "@/api";
+import { reactive, toRefs } from "vue";
 import { getUser, setUser } from "@/utils";
 export default {
   name: "MessageBox",
-  setup(props,context) {
+  setup(props, context) {
     const data = reactive({
       user: getUser() || "",
       message: "",
     });
 
-    console.log(context);
+    // console.log(context);
 
     function setMessage() {
       const queryParam = { user: data.user, message: data.message };
@@ -37,7 +37,7 @@ export default {
           data.message = "";
           setUser(data.user);
           // getMessageList();
-          context.emit("getMsg")
+          context.emit("getMsg");
         });
       } else {
         alert("打点字再提交啊大哥o.O");

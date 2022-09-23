@@ -65,7 +65,7 @@ export default {
       let start = 0,
         end = 0,
         num = Math.ceil(continues / 2);
-      console.log(continues);
+      // console.log(continues);
       if (continues > totalPage) {
         start = 1;
         end = totalPage;
@@ -107,6 +107,8 @@ export default {
   box-sizing: border-box;
   text-align: center;
   border: 0;
+  border:1px solid #666
+
 }
 .pagination button[disabled] {
   color: #c0c4cc;

@@ -31,3 +31,11 @@ export const reqGetArticleListByPage = (data) => {
     data,
   });
 };
+// 获取留言列表分页
+export const reqGetMessageListByPage = (data) => {
+  return request({
+    url: "/getMessageListByPage",
+    method: "post",
+    data,
+  });
+};
