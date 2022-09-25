@@ -39,3 +39,10 @@ export const reqGetMessageListByPage = (data) => {
     data,
   });
 };
+// 获取文章详情
+export const reqGetArticleDetail = (title) => {
+  return request({
+    url: `/getArticleDetail?title=${title}`,
+    method: "get",
+  });
+};

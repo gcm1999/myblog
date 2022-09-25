@@ -18,7 +18,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">F6博客</a>
+        <!-- <a class="navbar-brand" href="/home">F6博客</a> -->
+        <router-link class="navbar-brand" to="/home">F6博客</router-link>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,9 +50,9 @@
               <li>
                 <a href="http://www.gcm.cool/travel" target="_blank">去哪网</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="http://www.gcm.cool/albx" target="_blank">阿里百秀</a>
-              </li>
+              </li> -->
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>
               <li role="separator" class="divider"></li>

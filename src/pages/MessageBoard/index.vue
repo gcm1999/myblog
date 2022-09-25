@@ -38,7 +38,7 @@
 </template>
 <script>
 import { reqGetMessageList, reqGetMessageListByPage } from "@/api";
-import { onMounted, reactive, toRefs } from "vue";
+import { onMounted,onUnmounted, reactive, toRefs } from "vue";
 import { timeHandler } from "@/utils";
 import MessageBox from "./MessageBox/index.vue";
 import Pagination from "@/components/Pagination.vue";
