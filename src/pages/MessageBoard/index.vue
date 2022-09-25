@@ -1,5 +1,4 @@
 <template>
-  留言板
   <!-- {{ data.messageList }} -->
   <MessageBox @getMsg="getMessageList"></MessageBox>
 

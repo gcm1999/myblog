@@ -1,13 +1,36 @@
 <template>
-  <div class="article">
+  <!-- 
+    <div class="article">
     <h1>
       {{ articleDetail.title }}
     </h1>
     <div class="content" v-html="articleDetail.context"></div>
+  </div> 
+-->
+  <div class="common-layout article">
+    <el-container>
+      <el-aside class="slider" width="200px">slider</el-aside>
+      <el-container>
+        <el-main class="main">
+          <h1>
+            {{ articleDetail.title }}
+          </h1>
+          <div class="content" v-html="articleDetail.context"></div>
+        </el-main>
+        <el-footer class="footer">Footer</el-footer>
+      </el-container>
+    </el-container>
   </div>
 </template>
 <script>
-// import router from "@/router";
+// import {
+//   Check,
+//   Delete,
+//   Edit,
+//   Message,
+//   Search,
+//   Star,
+// } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
 import { onMounted, toRefs, reactive } from "vue";
@@ -30,7 +53,15 @@ export default {
 
     const RefData = toRefs(data);
 
-    return { ...RefData };
+    return {
+      // Check,
+      // Delete,
+      // Edit,
+      // Message,
+      // Search,
+      // Star,
+      ...RefData,
+    };
   },
 };
 </script>
@@ -45,6 +76,17 @@ export default {
 .content {
   text-indent: 2em !important;
 }
+
+.slider {
+  background-color: pink;
+}
+.main{
+  background-color: aliceblue;
+}
+.footer{
+  background-color: skyblue;
+}
+
 @media screen and (max-width: 760px) {
   .article {
     padding: 0 10px;
