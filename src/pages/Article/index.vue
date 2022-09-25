@@ -31,6 +31,11 @@
 //   Search,
 //   Star,
 // } from "@element-plus/icons-vue";
+
+// 读取md文件
+// import demo from "@/assets/readMe.md"
+// console.log(demo);
+
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
 import { onMounted, toRefs, reactive } from "vue";
@@ -60,6 +65,7 @@ export default {
       // Message,
       // Search,
       // Star,
+      // demo,
       ...RefData,
     };
   },
@@ -80,10 +86,10 @@ export default {
 .slider {
   background-color: pink;
 }
-.main{
+.main {
   background-color: aliceblue;
 }
-.footer{
+.footer {
   background-color: skyblue;
 }
 

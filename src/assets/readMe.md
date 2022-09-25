@@ -167,23 +167,27 @@
 ## 数组的方法
 
 ### 伪数组转换
+
         Array.from(farr)
         [...farr]
         from()可以接受第二个参数对每个元素进行处理
         Array.from(farr,function(ele){})
 
 ### of()
+
         将一组数据转换成数组
 
 ### find(function)/findIndex(function)
+
         返回符合条件的第一个数组成员/索引
 
+### entries(),keys(),values()
 
-### entries(),keys(),values()       
         返回一个遍历器，可以用for...of遍历
-### includes()
-        返回布尔值，是否包含给定的值
 
+### includes()
+
+        返回布尔值，是否包含给定的值
 
 ## iterator 遍历器
 
