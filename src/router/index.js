@@ -7,6 +7,11 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
+      path: "/overview",
+      component: () => import("@/pages/Overview"),
+      name: "overview",
+    },
+    {
       path: "/article/:title?",
       component: () => import("@/pages/Article"),
       name: "article",

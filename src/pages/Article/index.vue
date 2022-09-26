@@ -80,7 +80,7 @@ export default {
   margin: 20px 0;
 }
 .content {
-  text-indent: 2em !important;
+  text-indent: 2em;
 }
 
 .slider {
@@ -96,6 +96,9 @@ export default {
 @media screen and (max-width: 760px) {
   .article {
     padding: 0 10px;
+  }
+  .slider{
+    width: 0;
   }
 }
 </style>

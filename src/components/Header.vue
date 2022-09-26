@@ -32,7 +32,10 @@
               <span class="sr-only">(current)</span>
             </a> -->
           </li>
-          <li><a href="#">知识点</a></li>
+          <!-- <li><a href="#">知识点</a></li> -->
+          <li>
+            <router-link to="/overview">全览</router-link>
+          </li>
           <li class="dropdown">
             <a
               href="#"
