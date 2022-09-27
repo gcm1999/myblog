@@ -1,76 +1,16 @@
 <template>
   <h1>Overview</h1>
-  <div class="echarts-box">
-    <div id="myEcharts" :style="{ width: '100%', height: '300px' }"></div>
-  </div>
+  <TestEcharts></TestEcharts>
 </template>
 <script>
-// 导入echarts
-import * as echarts from "echarts";
+import TestEcharts from './TestEcharts/index.vue';
 
-import { onMounted, onUnmounted } from "vue";
 
 export default {
-  name: "Overview",
-  setup() {
-    /// 声明定义一下echart
-    let echart = echarts;
-
-    onMounted(() => {
-      initChart();
-    });
-
-    onUnmounted(() => {
-      echart.dispose;
-    });
-
-    // 基础配置一下Echarts
-    function initChart() {
-      let chart = echart.init(document.getElementById("myEcharts"), "dark");
-      // 把配置和数据放这里
-      chart.setOption({
-        title: {
-          text: "各标签文章总数",
-          subtext: "Fake Data",
-          left: "center",
-        },
-        tooltip: {
-          trigger: "item",
-        },
-        legend: {
-          orient: "vertical",
-          left: "auto",
-        },
-        series: [
-          {
-            name: "Access From",
-            type: "pie",
-            radius: "50%",
-            data: [
-              { value: 1048, name: "JavaScript" },
-              { value: 735, name: "HTML" },
-              { value: 580, name: "CSS" },
-              { value: 484, name: "MySQL" },
-              { value: 300, name: "LOL" },
-            ],
-          },
-        ],
-      });
-      //   window.onresize = function () {
-      //     //自适应大小
-      //     chart.resize();
-      //   };
-    }
-
-    return { initChart };
-  },
+    name: "Overview",
+    components: { TestEcharts }
 };
 </script>
 <style scoped>
-.echarts-box {
-  /* display: inline-block; */
-  width: 600px;
-  /* margin: auto; */
-  height: 1000px;
-}
+
 </style>
