@@ -46,3 +46,11 @@ export const reqGetArticleDetail = (title) => {
     method: "get",
   });
 };
+// 添加文章
+export const reqSetArticle = (data) => {
+  return request({
+    url: "/setArticle",
+    method: "post",
+    data,
+  });
+};

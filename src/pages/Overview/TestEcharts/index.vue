@@ -69,7 +69,7 @@ export default {
 .echarts-box {
   /* display: inline-block; */
   max-width: 600px;
-  /* margin: auto; */
-  height: 1000px;
+  margin:50px auto;
+  /* height: 1000px; */
 }
 </style>
