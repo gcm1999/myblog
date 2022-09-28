@@ -50,10 +50,10 @@ export default {
     // console.log(route.params.title);
 
     onMounted(() => {
-      reqGetArticleDetail(route.params.title).then((res) => {
-        // console.log(res);
-        data.articleDetail = res.data.articleDetail[0];
-      });
+    reqGetArticleDetail(route.params.title).then((res) => {
+      console.log(res);
+      data.articleDetail = res.data.articleDetail[0];
+    });
     });
 
     const RefData = toRefs(data);
@@ -97,7 +97,7 @@ export default {
   .article {
     padding: 0 10px;
   }
-  .slider{
+  .slider {
     width: 0;
   }
 }

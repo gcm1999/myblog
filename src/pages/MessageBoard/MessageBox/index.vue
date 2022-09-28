@@ -32,13 +32,19 @@ export default {
     function setMessage() {
       const queryParam = { user: data.user, message: data.message };
       if (data.user.trim() && data.message.trim()) {
-        reqSetMessage(queryParam).then((res) => {
-          // console.log(res);
-          data.message = "";
-          setUser(data.user);
-          // getMessageList();
-          context.emit("getMsg");
-        });
+        reqSetMessage(queryParam)
+          .then((res) => {
+            // console.log(res);
+            alert("留言成功！");
+            data.message = "";
+            setUser(data.user);
+            // getMessageList();
+            context.emit("getMsg");
+          })
+          .catch((rej) => {
+            alert(rej);
+            console.log(rej);
+          });
       } else {
         alert("打点字再提交啊大哥o.O");
       }

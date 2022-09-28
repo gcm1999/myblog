@@ -34,10 +34,10 @@
         </el-input>
       </el-col>
     </el-row>
+
     <md-editor v-model="text" @onHtmlChanged="saveHtml" />
-    <el-button type="primary" class="submitBtn" @click="setArticle"
-      >提交</el-button
-    >
+
+    <el-button type="primary" class="submitBtn" @click="setArticle">提交</el-button>
   </div>
 </template>
 <script setup>
@@ -45,8 +45,6 @@ import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reqSetArticle } from "@/api";
 import { ref } from "vue";
-
-let articleContent = ref("");
 
 const text = ref("");
 

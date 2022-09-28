@@ -36,8 +36,8 @@
   ></Pagination>
 </template>
 <script>
-import { reqGetMessageList, reqGetMessageListByPage } from "@/api";
-import { onMounted,onUnmounted, reactive, toRefs } from "vue";
+import { reqGetMessageListByPage } from "@/api";
+import { reactive, toRefs } from "vue";
 import { timeHandler } from "@/utils";
 import MessageBox from "./MessageBox/index.vue";
 import Pagination from "@/components/Pagination.vue";
@@ -52,17 +52,22 @@ export default {
       },
       total: 0,
     });
-    onMounted(() => {
-      getMessageList();
-    });
+    // onMounted(() => {
+    getMessageList();
+    // });
     const RefData = toRefs(data);
 
     function getMessageList() {
-      reqGetMessageListByPage(data.messageParams).then((res) => {
-        // console.log(res);
-        data.messageList = res.data.messageList;
-        data.total = res.data.total;
-      });
+      reqGetMessageListByPage(data.messageParams)
+        .then((res) => {
+          // console.log(res);
+          data.messageList = res.data.messageList;
+          data.total = res.data.total;
+        })
+        .catch((rej) => {
+          console.log(rej);
+          alert(rej);
+        });
     }
     // function getMessageList() {
     //   reqGetMessageList().then((res) => {
