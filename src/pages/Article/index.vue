@@ -17,7 +17,10 @@
           </h1>
           <div class="content" v-html="articleDetail.context"></div>
         </el-main>
-        <el-footer class="footer">Footer</el-footer>
+
+        <el-footer class="footer">
+          <Comment></Comment>
+        </el-footer>
       </el-container>
     </el-container>
   </div>
@@ -39,25 +42,22 @@
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
 import { onMounted, toRefs, reactive } from "vue";
+import Comment from "./Comment/index.vue";
 export default {
   name: "Article",
   setup() {
     const data = reactive({
       articleDetail: {},
     });
-
     const route = useRoute();
     // console.log(route.params.title);
-
-    onMounted(() => {
+    // onMounted(() => {
     reqGetArticleDetail(route.params.title).then((res) => {
-      console.log(res);
+      // console.log(res);
       data.articleDetail = res.data.articleDetail[0];
     });
-    });
-
+    // });
     const RefData = toRefs(data);
-
     return {
       // Check,
       // Delete,
@@ -69,6 +69,7 @@ export default {
       ...RefData,
     };
   },
+  components: { Comment },
 };
 </script>
 <style scoped>
