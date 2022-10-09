@@ -75,6 +75,7 @@ export default {
 <style scoped>
 .article {
   padding: 0 80px;
+  min-height: 900px;
 }
 .article h1 {
   text-align: center;
@@ -88,6 +89,8 @@ export default {
   background-color: pink;
 }
 .main {
+  min-height: 900px;
+
   background-color: aliceblue;
 }
 .footer {

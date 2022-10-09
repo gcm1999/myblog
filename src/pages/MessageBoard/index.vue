@@ -87,6 +87,8 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
+.list-group
+  overflow hidden
 .msg:before
   content attr(username)
   text-align center

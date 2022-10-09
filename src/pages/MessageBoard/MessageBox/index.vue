@@ -1,18 +1,29 @@
 <template>
   <div class="msg-box clearFix">
-    <div>
-      <input type="text" v-model="user" class="user" placeholder="用户名" />
-    </div>
-    <div>
-      <textarea
-        @keyup.enter="setMessage"
-        type="text"
-        v-model="message"
-        class="user"
-        placeholder="留言内容"
-      />
-    </div>
-    <button @click="setMessage">提交</button>
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="12" :md="6" :lg="6" :xl="6" class="col">
+        <el-input
+          v-model="user"
+          placeholder="用户名"
+          maxlength="10"
+          class="w-50 m-2"
+          show-word-limit
+        >
+        </el-input>
+      </el-col>
+      <el-col class="col">
+        <el-input
+          v-model="message"
+          :autosize="{ minRows: 4, maxRows: 4 }"
+          type="textarea"
+          placeholder="留言内容"
+        />
+      </el-col>
+      <el-col class="col">
+        <el-button type="primary" @click="setMessage">提交</el-button>
+      </el-col>
+    </el-row>
+    <!-- <button @click="setMessage">提交</button> -->
   </div>
 </template>
 <script>
@@ -58,21 +69,10 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .msg-box
-  padding: 10px;
-  background-color: #eee;
-  div
-    padding 10px
-    // background-color white
-    .user
-      // background-color: #eee;
-      outline none
-      border 1px solid black
-    textarea
-      width 100%
-      height 100px
+  background-color pink
+  padding 10px
+  .col
+    margin-top 10px
   button
     float right
-    padding 3px 5px
-    background-color white
-    border 0
 </style>
