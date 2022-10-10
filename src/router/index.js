@@ -20,6 +20,7 @@ const router = createRouter({
       path: "/search/:keywords?",
       component: () => import("@/pages/Search"),
       name: "search",
+      meta: { hidden: true },
     },
     {
       path: "/messageboard",

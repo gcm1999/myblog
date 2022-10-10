@@ -32,6 +32,7 @@
     <div class="contents">
       <div class="slider">
         <img src="@/assets/images/kamier.webp" alt="" />
+        <TagsCollapse></TagsCollapse>
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
         <div>诺克萨斯</div>
@@ -56,15 +57,15 @@
           <i class="glyphicon glyphicon-tag hidden-xs"></i
           ><span class="hidden-xs">{{ article.tag }}</span>
         </div>
+        <!-- 分页器 -->
+        <Pagination
+          :pageNo="articleParams.pageNo"
+          :pageSize="articleParams.pageSize"
+          :total="total"
+          :continues="2"
+          @currentPage="currentPage"
+        ></Pagination>
       </div>
-      <!-- 分页器 -->
-      <Pagination
-        :pageNo="articleParams.pageNo"
-        :pageSize="articleParams.pageSize"
-        :total="total"
-        :continues="2"
-        @currentPage="currentPage"
-      ></Pagination>
     </div>
   </div>
 </template>
@@ -73,6 +74,7 @@ import { reqGetArticleListByPage } from "@/api/index";
 import { reactive, toRefs } from "vue";
 import Pagination from "@/components/Pagination.vue";
 import { timeHandler } from "@/utils";
+import TagsCollapse from "./TagsCollapse/index.vue";
 export default {
   name: "",
   setup() {
@@ -106,16 +108,17 @@ export default {
 
     return { ...RefData, currentPage, timeHandler };
   },
-  components: { Pagination },
+  components: { Pagination, TagsCollapse },
 };
 </script>
 <style scoped lang="stylus">
 .main
-   background-color #eeeeee
+  background-color #eeeeee
   .contents
     max-width 1440px
     margin 0 auto
     overflow hidden
+    min-height 865px
     .slider
       width 300px
       // background-color white
@@ -130,6 +133,7 @@ export default {
       // margin-right 300px
       // background-color skyblue
       overflow hidden
+      // min-height 865px
       .article
         background-color white
         padding 10px

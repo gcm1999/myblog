@@ -126,7 +126,7 @@ export default {
     let keywords = ref("");
 
     function goSearch() {
-      router.push(`/search?${keywords.value}`);
+      router.push(`/search/${keywords.value}`);
       keywords.value = "";
     }
 

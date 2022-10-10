@@ -1,7 +1,9 @@
 <template>
   <!-- <h1>Overview</h1>
   <TestEcharts></TestEcharts> -->
-  <TestMdEditor></TestMdEditor>
+  <div class="overview">
+    <TestMdEditor></TestMdEditor>
+  </div>
 </template>
 <script>
 // import TestEcharts from './TestEcharts/index.vue';
@@ -15,4 +17,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+  .overview{
+    min-height: 900px;
+  }
+</style>
