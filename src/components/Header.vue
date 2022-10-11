@@ -127,6 +127,7 @@ export default {
 
     function goSearch() {
       router.push(`/search/${keywords.value}`);
+      // location.reload();
       keywords.value = "";
     }
 

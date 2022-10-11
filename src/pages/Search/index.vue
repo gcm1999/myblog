@@ -3,7 +3,7 @@
     <!-- {{articleList}} -->
 
     <ul v-infinite-scroll="load" class="infinite-list">
-      <li v-for="i in articleList" :key="i" class="infinite-list-item">
+      <li v-for="i in articleList" :key="i.id" class="infinite-list-item">
         {{ i }}
       </li>
     </ul>
@@ -11,21 +11,34 @@
 </template>
 
 <script setup>
-import { reqGetArticleListByPage } from "@/api/index";
+import { reqGetArticleListByKeywordByPage } from "@/api/index";
 
-import { ref } from "vue";
+import { ref, reactive, watch } from "vue";
 
 import { useRoute } from "vue-router";
 const route = useRoute();
 
-console.log(route.params.keywords);
 
-const articleParams = { pageNo: 1, pageSize: 10 };
+watch(route, (o, n) => {
+  // console.log({...articleParams});
+  // console.log({ ...route.params });
+  articleParams.keyword = route.params.keywords;
+  articleList.value = [];
+  getArticleList();
+  // console.log("watch");
+});
+
+// console.log(route.params.keywords);
+
+const articleParams = reactive({
+  pageNo: 1,
+  pageSize: 10,
+  keyword: route.params.keywords,
+});
 const articleList = ref([]);
 
 getArticleList();
 
-const count = ref(0);
 const load = () => {
   // count.value += 2;
   articleParams.pageNo += 1;
@@ -33,9 +46,10 @@ const load = () => {
 };
 
 function getArticleList() {
-  reqGetArticleListByPage(articleParams).then((res) => {
+  reqGetArticleListByKeywordByPage({ ...articleParams }).then((res) => {
     articleList.value.push(...res.data.articleList);
-    console.log(articleList.value);
+    // console.log(articleList.value);
+    // console.log({ ...articleParams });
   });
 }
 </script>

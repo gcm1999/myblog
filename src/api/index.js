@@ -31,6 +31,14 @@ export const reqGetArticleListByPage = (data) => {
     data,
   });
 };
+// 关键字获取文章列表分页
+export const reqGetArticleListByKeywordByPage = (data) => {
+  return request({
+    url: "/getArticleListByKeywordByPage",
+    method: "post",
+    data,
+  });
+};
 // 获取留言列表分页
 export const reqGetMessageListByPage = (data) => {
   return request({
