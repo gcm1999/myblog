@@ -70,6 +70,7 @@
               class="form-control"
               v-model="keywords"
               placeholder="输入关键字"
+              @keyup.enter="goSearch"
             />
           </div>
           <button

@@ -3,21 +3,37 @@
     <!-- {{articleList}} -->
 
     <ul v-infinite-scroll="load" class="infinite-list">
-      <li v-for="i in articleList" :key="i.id" class="infinite-list-item">
-        {{ i }}
+      <li v-show="!articleList.length">搜索结果为空</li>
+      <li
+        v-for="(article, index) in articleList"
+        :key="article.id"
+        class="infinite-list-item"
+      >
+        <div class="title">
+          <router-link :to="article.url">{{ article.title }}</router-link>
+        </div>
+        <div class="info">
+          <i class="glyphicon glyphicon-user"></i>
+          <span>{{ article.author }}</span>
+          <i class="glyphicon glyphicon-time"></i>
+          <span>{{ timeHandler(article.time) }}</span>
+          <i class="glyphicon glyphicon-tag hidden-xs"></i>
+          <span class="hidden-xs">{{ article.tag }}</span>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
+import { timeHandler } from "@/utils";
+
 import { reqGetArticleListByKeywordByPage } from "@/api/index";
 
 import { ref, reactive, watch } from "vue";
 
 import { useRoute } from "vue-router";
 const route = useRoute();
-
 
 watch(route, (o, n) => {
   // console.log({...articleParams});
@@ -54,9 +70,9 @@ function getArticleList() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .search {
-  max-width: 1440px;
+  // max-width: 1440px;
   margin: auto;
 }
 .infinite-list {
@@ -67,12 +83,21 @@ function getArticleList() {
 }
 .infinite-list .infinite-list-item {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
-  height: 50px;
+  flex-direction:column;
+  // height: 50px;
   background: #eee;
-  margin: 10px;
+  margin: 33px;
+  padding:10px
   color: var(--el-color-primary);
+}
+.title{
+  font-size:20px
+}
+.info span{
+  margin-right:10px;
+  color #999
 }
 .infinite-list .infinite-list-item + .list-item {
   margin-top: 10px;
