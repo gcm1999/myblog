@@ -57,12 +57,13 @@ export default {
     // });
     const RefData = toRefs(data);
 
-    function getMessageList() {
+    function getMessageList(cb) {
       reqGetMessageListByPage(data.messageParams)
         .then((res) => {
           // console.log(res);
           data.messageList = res.data.messageList;
           data.total = res.data.total;
+          cb && cb();
         })
         .catch((rej) => {
           console.log(rej);
@@ -77,8 +78,7 @@ export default {
 
     function currentPage(pageNo) {
       data.messageParams.pageNo = pageNo;
-      getMessageList();
-      scrollTo(0, 0);
+      getMessageList(() => scrollTo(0, 0));
     }
 
     return { ...RefData, timeHandler, getMessageList, currentPage };

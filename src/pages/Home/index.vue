@@ -91,10 +91,11 @@ export default {
     getArticleList();
     // });
 
-    function getArticleList() {
+    function getArticleList(cb) {
       reqGetArticleListByPage(data.articleParams).then((res) => {
         data.articleList = res.data.articleList;
         data.total = res.data.total;
+        cb && cb();
       });
     }
 
@@ -102,8 +103,7 @@ export default {
 
     function currentPage(pageNo) {
       data.articleParams.pageNo = pageNo;
-      getArticleList();
-      scrollTo(0, 0);
+      getArticleList(() => scrollTo(0, 0));
     }
 
     return { ...RefData, currentPage, timeHandler };

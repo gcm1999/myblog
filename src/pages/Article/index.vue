@@ -82,7 +82,7 @@ export default {
   margin: 20px 0;
 }
 .content {
-  text-indent: 2em;
+  /* text-indent: 2em; */
 }
 
 .slider {
