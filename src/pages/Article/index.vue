@@ -11,11 +11,14 @@
     <el-container>
       <el-aside class="slider" width="200px">slider</el-aside>
       <el-container>
-        <el-main class="main">
+        <el-main class="main markdown-body">
           <h1>
             {{ articleDetail.title }}
           </h1>
-          <div class="content" v-html="articleDetail.context"></div>
+          <div
+            class="content"
+            v-html="articleDetail.context"
+          ></div>
         </el-main>
 
         <el-footer class="footer">
@@ -41,7 +44,7 @@
 
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
-import { onMounted, toRefs, reactive } from "vue";
+import { toRefs, reactive } from "vue";
 import Comment from "./Comment/index.vue";
 export default {
   name: "Article",
@@ -74,15 +77,14 @@ export default {
 </script>
 <style scoped>
 .article {
-  padding: 0 80px;
+  /* padding: 0 80px; */
   min-height: 900px;
 }
+
+
 .article h1 {
   text-align: center;
-  margin: 20px 0;
-}
-.content {
-  /* text-indent: 2em; */
+  /* margin: 20px 0; */
 }
 
 .slider {
@@ -90,8 +92,7 @@ export default {
 }
 .main {
   min-height: 900px;
-
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 .footer {
   background-color: skyblue;
@@ -99,7 +100,7 @@ export default {
 
 @media screen and (max-width: 760px) {
   .article {
-    padding: 0 10px;
+    /* padding: 0 10px; */
   }
   .slider {
     width: 0;
