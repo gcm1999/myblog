@@ -41,7 +41,7 @@
       </el-col>
     </el-row>
 
-    <md-editor v-model="text" @onHtmlChanged="saveHtml" />
+    <md-editor v-model="text" @onHtmlChanged=""/>
 
     <el-button type="primary" class="submitBtn" @click="setArticle"
       >提交</el-button
@@ -83,12 +83,19 @@ const options = [
     value: "LOL",
     label: "LOL",
   },
+  {
+    value: "java",
+    label: "java",
+  },
+  {
+    value: "其他",
+    label: "其他",
+  },
 ];
 
-function saveHtml(h) {
-  // console.log(h);
-  context.value = h;
-}
+// function saveHtml(h) {
+//   context.value = h;
+// }
 
 function setArticle() {
   if (!title.value.trim()) {
@@ -104,7 +111,7 @@ function setArticle() {
       title: title.value,
       user: user.value,
       tag: tag.value,
-      context: context.value,
+      context: text.value,
     };
     // console.log(data);
     reqSetArticle(data)

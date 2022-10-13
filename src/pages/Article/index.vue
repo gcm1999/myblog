@@ -11,14 +11,15 @@
     <el-container>
       <el-aside class="slider" width="200px">slider</el-aside>
       <el-container>
-        <el-main class="main markdown-body">
+        <el-main class="main">
           <h1>
             {{ articleDetail.title }}
           </h1>
-          <div
+          <!-- <div
             class="content"
             v-html="articleDetail.context"
-          ></div>
+          ></div> -->
+          <md-editor v-model="articleDetail.context" previewOnly="true" />
         </el-main>
 
         <el-footer class="footer">
@@ -42,9 +43,12 @@
 // import demo from "@/assets/readMe.md"
 // console.log(demo);
 
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
+
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
-import { toRefs, reactive } from "vue";
+import { toRefs, reactive,ref } from "vue";
 import Comment from "./Comment/index.vue";
 export default {
   name: "Article",
@@ -52,6 +56,7 @@ export default {
     const data = reactive({
       articleDetail: {},
     });
+    const text = ref("```js\nlet a = 11\n```");
     const route = useRoute();
     // console.log(route.params.title);
     // onMounted(() => {
@@ -70,9 +75,10 @@ export default {
       // Star,
       // demo,
       ...RefData,
+      text
     };
   },
-  components: { Comment },
+  components: { Comment,MdEditor },
 };
 </script>
 <style scoped>
