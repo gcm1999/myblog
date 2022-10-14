@@ -19,7 +19,7 @@
             class="content"
             v-html="articleDetail.context"
           ></div> -->
-          <md-editor v-model="articleDetail.context" previewOnly="true" />
+          <md-editor v-model="articleDetail.context" :previewOnly=true />
         </el-main>
 
         <el-footer class="footer">
@@ -56,7 +56,7 @@ export default {
     const data = reactive({
       articleDetail: {},
     });
-    const text = ref("```js\nlet a = 11\n```");
+    // const text = ref("```js\nlet a = 11\n```");
     const route = useRoute();
     // console.log(route.params.title);
     // onMounted(() => {
@@ -75,7 +75,7 @@ export default {
       // Star,
       // demo,
       ...RefData,
-      text
+      // text
     };
   },
   components: { Comment,MdEditor },

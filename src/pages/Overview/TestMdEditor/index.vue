@@ -41,7 +41,7 @@
       </el-col>
     </el-row>
 
-    <md-editor v-model="text" @onHtmlChanged=""/>
+    <md-editor v-model="text"/>
 
     <el-button type="primary" class="submitBtn" @click="setArticle"
       >提交</el-button
