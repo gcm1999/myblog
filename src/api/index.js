@@ -62,3 +62,18 @@ export const reqSetArticle = (data) => {
     data,
   });
 };
+// 获取评论
+export const reqGetCommentList = (title) => {
+  return request({
+    url: "/getCommentList?title="+title,
+    method: "get",
+  });
+};
+// 添加评论
+export const reqSetComment = (data) => {
+  return request({
+    url: "/setComment",
+    method: "post",
+    data
+  });
+};

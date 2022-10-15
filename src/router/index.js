@@ -15,6 +15,7 @@ const router = createRouter({
       path: "/article/:title?",
       component: () => import("@/pages/Article"),
       name: "article",
+      meta: { hidden: true },
     },
     {
       path: "/search/:keywords?",

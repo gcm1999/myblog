@@ -22,12 +22,12 @@
           <md-editor v-model="articleDetail.context" :previewOnly="true" />
         </el-main>
 
-        <el-footer class="footer">
-          <Comment></Comment>
-        </el-footer>
+        <!-- <el-footer class="footer">
+        </el-footer> -->
       </el-container>
     </el-container>
   </div>
+  <Comment class="comment"></Comment>
 </template>
 <script>
 // import {
@@ -65,7 +65,6 @@ export default {
       data.articleDetail = res.data.articleDetail[0];
     });
     // });
-    const RefData = toRefs(data);
     return {
       // Check,
       // Delete,
@@ -74,7 +73,7 @@ export default {
       // Search,
       // Star,
       // demo,
-      ...RefData,
+      ...toRefs(data),
       // text
     };
   },
@@ -82,9 +81,9 @@ export default {
 };
 </script>
 <style scoped>
-.article {
-  /* padding: 0 80px; */
-  min-height: 900px;
+
+.footer {
+  background-color: skyblue;
 }
 
 .article h1 {
@@ -95,18 +94,8 @@ export default {
 .slider {
   background-color: pink;
 }
-.main {
-  min-height: 900px;
-  /* background-color: aliceblue; */
-}
-.footer {
-  background-color: skyblue;
-}
 
 @media screen and (max-width: 760px) {
-  .article {
-    /* padding: 0 10px; */
-  }
   .slider {
     width: 0;
   }
