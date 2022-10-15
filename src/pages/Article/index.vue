@@ -19,7 +19,7 @@
             class="content"
             v-html="articleDetail.context"
           ></div> -->
-          <md-editor v-model="articleDetail.context" :previewOnly=true />
+          <md-editor v-model="articleDetail.context" :previewOnly="true" />
         </el-main>
 
         <el-footer class="footer">
@@ -48,7 +48,7 @@ import "md-editor-v3/lib/style.css";
 
 import { useRoute } from "vue-router";
 import { reqGetArticleDetail } from "@/api/index";
-import { toRefs, reactive,ref } from "vue";
+import { toRefs, reactive, ref } from "vue";
 import Comment from "./Comment/index.vue";
 export default {
   name: "Article",
@@ -78,7 +78,7 @@ export default {
       // text
     };
   },
-  components: { Comment,MdEditor },
+  components: { Comment, MdEditor },
 };
 </script>
 <style scoped>
@@ -86,7 +86,6 @@ export default {
   /* padding: 0 80px; */
   min-height: 900px;
 }
-
 
 .article h1 {
   text-align: center;

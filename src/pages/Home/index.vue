@@ -99,14 +99,12 @@ export default {
       });
     }
 
-    const RefData = toRefs(data);
-
     function currentPage(pageNo) {
       data.articleParams.pageNo = pageNo;
       getArticleList(() => scrollTo(0, 0));
     }
 
-    return { ...RefData, currentPage, timeHandler };
+    return { ...toRefs(data), currentPage, timeHandler };
   },
   components: { Pagination, TagsCollapse },
 };

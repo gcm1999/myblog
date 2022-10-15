@@ -55,7 +55,6 @@ export default {
     // onMounted(() => {
     getMessageList();
     // });
-    const RefData = toRefs(data);
 
     function getMessageList(cb) {
       reqGetMessageListByPage(data.messageParams)
@@ -81,7 +80,7 @@ export default {
       getMessageList(() => scrollTo(0, 0));
     }
 
-    return { ...RefData, timeHandler, getMessageList, currentPage };
+    return { ...toRefs(data), timeHandler, getMessageList, currentPage };
   },
   components: { MessageBox, Pagination },
 };
