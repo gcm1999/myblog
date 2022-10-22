@@ -89,7 +89,7 @@ ol {
 /* 重置文本格式元素 */
 a {
   text-decoration: none;
-  color: black !important;
+  color: black;
   cursor: pointer;
 }
 
@@ -130,7 +130,7 @@ html {
 }
 
 a:hover {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 /* 清除浮动 */

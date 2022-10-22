@@ -65,7 +65,7 @@ export const reqSetArticle = (data) => {
 // 获取评论
 export const reqGetCommentList = (title) => {
   return request({
-    url: "/getCommentList?title="+title,
+    url: "/getCommentList?title=" + title,
     method: "get",
   });
 };
@@ -74,6 +74,20 @@ export const reqSetComment = (data) => {
   return request({
     url: "/setComment",
     method: "post",
-    data
+    data,
+  });
+};
+// 标签
+export const reqGetTagsList = () => {
+  return request({
+    url: "/getTagsList",
+    method: "get",
+  });
+};
+// 作者
+export const reqGetAuthorsList = () => {
+  return request({
+    url: "/getAuthorsList",
+    method: "get",
   });
 };

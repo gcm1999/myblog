@@ -9,19 +9,20 @@ module.exports = defineConfig({
         target: "http://gcm.cool:3001",
         // pathRewrite: {},
         changeOrigin: true,
+        ws: false,
       },
     },
   },
   publicPath: "/myblog",
-  chainWebpack: (config) => {
-    config.module
-      .rule("md")
-      .test(/.md$/)
-      .use("html-loader")
-      .loader("html-loader")
-      .end()
-      .use("markdown-loader")
-      .loader("markdown-loader")
-      .end();
-  },
+  // chainWebpack: (config) => {
+  //   config.module
+  //     .rule("md")
+  //     .test(/.md$/)
+  //     .use("html-loader")
+  //     .loader("html-loader")
+  //     .end()
+  //     .use("markdown-loader")
+  //     .loader("markdown-loader")
+  //     .end();
+  // },
 });

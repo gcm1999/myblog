@@ -4,6 +4,10 @@
       <el-collapse-item title="Consistency" name="1">
         <div>tag1</div>
         <div>tag2</div>
+        <div>tag2</div>
+        <div>tag2</div>
+        <div>tag2</div>
+        <div>tag2</div>
       </el-collapse-item>
       <el-collapse-item title="Consistency" name="2">
         <el-tag>Tag 1</el-tag>
@@ -21,7 +25,7 @@ import { ref } from "vue";
 
 const activeName = ref(["1"]);
 const handleChange = (val) => {
-  console.log(val);
+  // console.log(val);
 };
 </script>
 <style scoped></style>

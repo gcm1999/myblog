@@ -49,12 +49,19 @@
 export default {
   name: "Pagination",
   props: ["pageNo", "pageSize", "total", "continues"],
-  setup(props) {},
+  // setup(props, context) {
+  //   console.log(props);
+  //   console.log(context);
+  //   return { props };
+  // },
   data() {
     return {
       // show: true,
     };
   },
+  // setup(props) {
+  //   console.log(props);
+  // },
   computed: {
     // 总页数
     totalPage() {
@@ -107,8 +114,7 @@ export default {
   box-sizing: border-box;
   text-align: center;
   border: 0;
-  border:1px solid #666
-
+  border: 1px solid #666;
 }
 .pagination button[disabled] {
   color: #c0c4cc;

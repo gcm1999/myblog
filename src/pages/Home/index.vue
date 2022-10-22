@@ -33,12 +33,7 @@
       <div class="slider">
         <img src="@/assets/images/kamier.webp" alt="" />
         <TagsCollapse></TagsCollapse>
-        <div>诺克萨斯</div>
-        <div>诺克萨斯</div>
-        <div>诺克萨斯</div>
-        <div>诺克萨斯</div>
-        <div>诺克萨斯</div>
-        <div>诺克萨斯</div>
+    
       </div>
       <div class="con">
         <div
@@ -58,20 +53,20 @@
           ><span class="hidden-xs">{{ article.tag }}</span>
         </div>
         <!-- 分页器 -->
-        <Pagination
-          :pageNo="articleParams.pageNo"
-          :pageSize="articleParams.pageSize"
-          :total="total"
-          :continues="2"
-          @currentPage="currentPage"
-        ></Pagination>
       </div>
+      <Pagination
+        :pageNo="articleParams.pageNo"
+        :pageSize="articleParams.pageSize"
+        :total="total"
+        :continues="3"
+        @currentPage="currentPage"
+      ></Pagination>
     </div>
   </div>
 </template>
 <script>
 import { reqGetArticleListByPage } from "@/api/index";
-import { reactive, toRefs } from "vue";
+import { ref, reactive, toRefs, onMounted } from "vue";
 import Pagination from "@/components/Pagination.vue";
 import { timeHandler } from "@/utils";
 import TagsCollapse from "./TagsCollapse/index.vue";
@@ -116,7 +111,7 @@ export default {
     max-width 1440px
     margin 0 auto
     overflow hidden
-    min-height 865px
+    // min-height 865px
     .slider
       width 300px
       // background-color white
@@ -127,11 +122,15 @@ export default {
         width 200px
         height 200px
         border-radius 50%
+
     .con
       // margin-right 300px
       // background-color skyblue
       overflow hidden
-      // min-height 865px
+      cursor pointer
+      min-height 835px
+      .article:hover
+        color pink
       .article
         background-color white
         padding 10px
@@ -141,7 +140,7 @@ export default {
             font-size 20px
             padding-left 8px
           a:hover
-            color red
+            color pink
         i
           color #999
           padding 8px 5px 5px 8px
@@ -157,6 +156,8 @@ export default {
     position relative
     overflow hidden
     h1
+      font-size 36px
+      margin 20px 0 10px
       text-align center
     p
       text-align center

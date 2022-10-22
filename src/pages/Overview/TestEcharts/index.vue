@@ -1,22 +1,30 @@
 <template>
-    <div class="echarts-box">
+  <div class="echarts-box">
     <div id="myEcharts" :style="{ width: '100%', height: '300px' }"></div>
+
+    <div id="myEcharts2" :style="{ width: '100%', height: '300px' }"></div>
   </div>
 </template>
 <script>
 // 导入echarts
 import * as echarts from "echarts";
 
-import { onMounted, onUnmounted } from "vue";
+import { onMounted } from "vue";
+import { reqGetTagsList, reqGetAuthorsList } from "@/api";
 
 export default {
   name: "TestTcharts",
-  setup() {
+  setup(props) {
     /// 声明定义一下echart
     let echart = echarts;
 
     onMounted(() => {
-      initChart();
+      reqGetTagsList().then((res) => {
+        initChart("myEcharts", "各标签文章总数", res.data.tagsList, "dark");
+      });
+      reqGetAuthorsList().then((res) => {
+        initChart("myEcharts2", "各作者文章总数", res.data.authorsList);
+      });
     });
 
     // onUnmounted(() => {
@@ -24,13 +32,17 @@ export default {
     // });
 
     // 基础配置一下Echarts
-    function initChart() {
-      let chart = echart.init(document.getElementById("myEcharts"), "dark");
+    // @id:dom节点id
+    // @text:标题
+    // @data:数据
+    // @style:样式风格（dark深色模式
+    function initChart(id, text, data, style) {
+      let chart = echart.init(document.getElementById(id), style);
       // 把配置和数据放这里
       chart.setOption({
         title: {
-          text: "各标签文章总数",
-          subtext: "Fake Data",
+          text,
+          // subtext: "Fake Data",
           left: "center",
         },
         tooltip: {
@@ -45,20 +57,17 @@ export default {
             name: "Access From",
             type: "pie",
             radius: "50%",
-            data: [
-              { value: 1048, name: "JavaScript" },
-              { value: 735, name: "HTML" },
-              { value: 580, name: "CSS" },
-              { value: 484, name: "MySQL" },
-              { value: 300, name: "LOL" },
-            ],
+            data,
           },
         ],
       });
-      //   window.onresize = function () {
-      //     //自适应大小
-      //     chart.resize();
-      //   };
+      // window.onresize = function () {
+      //   //自适应大小
+      //   chart.resize();
+      // };
+      window.addEventListener("resize", function () {
+        chart.resize();
+      });
     }
 
     return { initChart };
@@ -67,9 +76,13 @@ export default {
 </script>
 <style scoped>
 .echarts-box {
+  display: flex;
+  flex-wrap: wrap;
   /* display: inline-block; */
-  max-width: 600px;
-  margin:50px auto;
+  /* max-width: 600px; */
+  /* width: 100%; */
+  /* margin:50px auto; */
   /* height: 1000px; */
+  /* overflow: hidden; */
 }
 </style>
