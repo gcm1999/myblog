@@ -22,7 +22,7 @@ export default {
 .overview {
   min-height: 900px;
 }
-h1{
+h1 {
   text-align: center;
   font-size: 36px;
   padding: 5px 0 10px;

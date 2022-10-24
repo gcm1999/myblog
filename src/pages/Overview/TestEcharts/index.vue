@@ -9,23 +9,24 @@
 // 导入echarts
 import * as echarts from "echarts";
 
-import { onMounted } from "vue";
+import { onMounted, onBeforeUnmount } from "vue";
 import { reqGetTagsList, reqGetAuthorsList } from "@/api";
 
 export default {
   name: "TestTcharts",
   setup(props) {
-    /// 声明定义一下echart
-    let echart = echarts;
-
     onMounted(() => {
+      init();
+    });
+
+    function init() {
       reqGetTagsList().then((res) => {
         initChart("myEcharts", "各标签文章总数", res.data.tagsList, "dark");
       });
       reqGetAuthorsList().then((res) => {
         initChart("myEcharts2", "各作者文章总数", res.data.authorsList);
       });
-    });
+    }
 
     // onUnmounted(() => {
     //   echart.dispose;
@@ -37,7 +38,10 @@ export default {
     // @data:数据
     // @style:样式风格（dark深色模式
     function initChart(id, text, data, style) {
-      let chart = echart.init(document.getElementById(id), style);
+      // console.log(document.getElementById(id));
+      const myEcharts = document.getElementById(id);
+      // console.log(myEcharts);
+      let chart = echarts.init(myEcharts, style);
       // 把配置和数据放这里
       chart.setOption({
         title: {
@@ -70,7 +74,20 @@ export default {
       });
     }
 
-    return { initChart };
+    onBeforeUnmount(() => {
+      // 第一次进入该页面是正常渲染的，但是在这个页面跳出来，在进入的话依然是调用的echarts初始化的图标，导致页面渲染不成功，即不渲染图标
+      // 原因是：
+      // 由于容器上已经有 echarts_instance ，还是上次的，所以Echarts是不会重新初始化的，需要手动将DOM上的 echarts_instance 属性移除， 再次进行初始化， 然后setOptio
+      // 即在离开给页面的时候清空一下echarts_instance属性
+      // 写法
+      // document.getElementById('xxx').removeAttribute('_echarts_instance_');
+      document
+        .getElementById("myEcharts")
+        .removeAttribute("_echarts_instance_");
+      document
+        .getElementById("myEcharts2")
+        .removeAttribute("_echarts_instance_");
+    });
   },
 };
 </script>

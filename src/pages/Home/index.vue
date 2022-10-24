@@ -33,13 +33,13 @@
       <div class="slider">
         <img src="@/assets/images/kamier.webp" alt="" />
         <TagsCollapse></TagsCollapse>
-    
       </div>
       <div class="con">
         <div
           class="article"
           v-for="(article, index) in articleList"
           :key="article.id"
+          @click="toArticle(article.url)"
         >
           <div class="title">
             <!-- <a href="#">{{ article.title }}</a> -->
@@ -70,6 +70,7 @@ import { ref, reactive, toRefs, onMounted } from "vue";
 import Pagination from "@/components/Pagination.vue";
 import { timeHandler } from "@/utils";
 import TagsCollapse from "./TagsCollapse/index.vue";
+import router from "@/router";
 export default {
   name: "",
   setup() {
@@ -99,7 +100,13 @@ export default {
       getArticleList(() => scrollTo(0, 0));
     }
 
-    return { ...toRefs(data), currentPage, timeHandler };
+    function toArticle(url) {
+      // alert(title);
+      router.push(url)
+
+    }
+
+    return { ...toRefs(data), currentPage, timeHandler, toArticle };
   },
   components: { Pagination, TagsCollapse },
 };
@@ -129,8 +136,9 @@ export default {
       overflow hidden
       cursor pointer
       min-height 835px
-      .article:hover
+      .article:hover a
         color pink
+        border-bottom 3px solid pink
       .article
         background-color white
         padding 10px
@@ -138,9 +146,7 @@ export default {
         .title
           a
             font-size 20px
-            padding-left 8px
-          a:hover
-            color pink
+            padding 0 8px
         i
           color #999
           padding 8px 5px 5px 8px
