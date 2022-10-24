@@ -28,6 +28,8 @@ import { useRoute } from "vue-router";
 import { reqGetCommentList, reqSetComment } from "@/api";
 import { timeHandler } from "@/utils";
 
+import { ElMessage } from "element-plus";
+
 const route = useRoute();
 
 const content = ref("");
@@ -46,7 +48,11 @@ getCommentList();
 
 function saveMsg() {
   if (!content.value.trim()) {
-    alert("打点字再提交吧");
+    // alert("打点字再提交吧");
+    ElMessage({
+      message: "打点字再提交吧",
+      type: "warning",
+    });
     return;
   }
   const data = { title: route.params.title, content: content.value };
@@ -54,7 +60,11 @@ function saveMsg() {
   reqSetComment(data)
     .then((res) => {
       if (res.code === 201) {
-        alert("添加成功");
+        // alert("添加成功");
+        ElMessage({
+          message: "添加成功!",
+          type: "success",
+        });
         getCommentList();
       }
     })

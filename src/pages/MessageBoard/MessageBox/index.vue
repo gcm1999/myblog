@@ -30,6 +30,7 @@
 import { reqSetMessage } from "@/api";
 import { reactive, toRefs } from "vue";
 import { getUser, setUser } from "@/utils";
+import { ElMessage } from "element-plus";
 export default {
   name: "MessageBox",
   setup(props, context) {
@@ -46,7 +47,11 @@ export default {
         reqSetMessage(queryParam)
           .then((res) => {
             // console.log(res);
-            alert("留言成功！");
+            // alert("留言成功！");
+            ElMessage({
+              message: "留言成功！",
+              type: "success",
+            });
             data.message = "";
             setUser(data.user);
             // getMessageList();
@@ -57,7 +62,18 @@ export default {
             console.log(rej);
           });
       } else {
-        alert("打点字再提交啊大哥o.O");
+        // alert("打点字再提交啊大哥o.O");
+        if (!data.user.trim()) {
+          ElMessage({
+            message: "请输入用户名",
+            type: "warning",
+          });
+        } else {
+          ElMessage({
+            message: "打点字再提交哦o.O",
+            type: "warning",
+          });
+        }
       }
     }
 

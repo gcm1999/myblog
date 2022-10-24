@@ -76,9 +76,9 @@ function getArticleList() {
   margin: auto;
 }
 .infinite-list {
-  height: 960px;
-  padding: 0;
-  margin: 0;
+  min-height: 960px;
+  // padding: 0;
+  // margin: 0;
   list-style: none;
 }
 .infinite-list .infinite-list-item {

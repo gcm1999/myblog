@@ -41,7 +41,7 @@
       </el-col>
     </el-row>
 
-    <md-editor v-model="text"/>
+    <md-editor v-model="text" />
 
     <el-button type="primary" class="submitBtn" @click="setArticle"
       >提交</el-button
@@ -51,6 +51,8 @@
 <script setup>
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
+
+import { ElMessage } from "element-plus";
 
 import "element-plus/theme-chalk/display.css";
 import { reqSetArticle } from "@/api";
@@ -99,13 +101,29 @@ const options = [
 
 function setArticle() {
   if (!title.value.trim()) {
-    alert("请输入文章标题");
+    // alert("请输入文章标题");
+    ElMessage({
+      message: "请输入文章标题",
+      type: "warning",
+    });
   } else if (!user.value.trim()) {
-    alert("请输入用户名");
+    // alert("请输入用户名");
+    ElMessage({
+      message: "请输入用户名",
+      type: "warning",
+    });
   } else if (!tag.value.trim()) {
-    alert("请选择文章标签");
+    // alert("请选择文章标签");
+    ElMessage({
+      message: "请选择文章标签",
+      type: "warning",
+    });
   } else if (!text.value.trim()) {
-    alert("文章内容不能为空");
+    // alert("文章内容不能为空");
+    ElMessage({
+      message: "文章内容不能为空",
+      type: "warning",
+    });
   } else {
     const data = {
       title: title.value,
@@ -122,7 +140,11 @@ function setArticle() {
         user.value = "";
         title.value = "";
         context.value = "";
-        alert("提交成功！");
+        // alert("提交成功！");
+        ElMessage({
+          message: "提交成功！",
+          type: "success",
+        });
       })
       .catch((rej) => {
         console.log(rej);
