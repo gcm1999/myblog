@@ -12,7 +12,7 @@ export const timeHandler = (time) => {
   const minutes = Math.floor(num / 60);
   const hours = Math.floor(num / 3600);
   const days = Math.floor(num / (3600 * 24));
-  if (days && days < 3) {
+  if (days && days < 7) {
     return days + "天前";
   }else if (!days&&hours) {
     return hours + "小时前";

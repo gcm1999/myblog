@@ -32,7 +32,11 @@
     <div class="contents">
       <div class="slider">
         <img src="@/assets/images/kamier.webp" alt="" />
-        <TagsCollapse></TagsCollapse>
+        <div class="info">
+          <h2>郭晨明</h2>
+          <span>F6博客</span><i></i><span>郭晨明的个人站点</span>
+        </div>
+        <!-- <TagsCollapse></TagsCollapse> -->
       </div>
       <div class="con">
         <div
@@ -102,8 +106,7 @@ export default {
 
     function toArticle(url) {
       // alert(title);
-      router.push(url)
-
+      router.push(url);
     }
 
     return { ...toRefs(data), currentPage, timeHandler, toArticle };
@@ -129,7 +132,23 @@ export default {
         width 200px
         height 200px
         border-radius 50%
-
+      .info
+        h2
+          // font: bold 32px "微软雅黑";
+          font-size:32px;
+          margin 10px 0 20px
+          // color: rgb(76,183,196);
+          color: #000;
+          text-shadow: 1px 1px rgba(76,183,196,0.3), 2px 2px rgba(76,183,196,0.3),
+          3px 3px rgba(76,183,196,0.3), 4px 4px rgba(76,183,196,0.3);
+          // 5px 5px rgba(76,183,196,0.3), 6px 6px rgba(76,183,196,0.3);
+          /* text-shadow: h-shadow v-shadow blur color
+                          x轴阴影位置 y轴距离 阴影大小 颜色 */
+        span
+          font-size 16px
+          padding 5px
+        i
+          border-left 1px solid #000
     .con
       // margin-right 300px
       // background-color skyblue
@@ -137,8 +156,9 @@ export default {
       cursor pointer
       min-height 835px
       .article:hover a
-        color pink
-        border-bottom 3px solid pink
+        // color rgb(76,183,196)
+        // border-bottom 2px solid rgb(76,183,196)
+        border-bottom 2px solid #000
       .article
         background-color white
         padding 10px

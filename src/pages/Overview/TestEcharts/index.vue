@@ -28,17 +28,14 @@ export default {
       });
     }
 
-    // onUnmounted(() => {
-    //   echart.dispose;
-    // });
-
     // 基础配置一下Echarts
     // @id:dom节点id
     // @text:标题
-    // @data:数据
+    // @data:数据[{name1,value1},{name2,value2}...]
     // @style:样式风格（dark深色模式
     function initChart(id, text, data, style) {
       // console.log(document.getElementById(id));
+      // console.log(data);
       const myEcharts = document.getElementById(id);
       // console.log(myEcharts);
       let chart = echarts.init(myEcharts, style);
