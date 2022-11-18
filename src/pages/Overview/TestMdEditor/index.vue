@@ -42,6 +42,7 @@
     </el-row>
 
     <md-editor v-model="text" />
+    <input type="file" ref="inputFile" />
 
     <el-button type="primary" class="submitBtn" @click="setArticle"
       >提交</el-button
@@ -56,7 +57,25 @@ import { ElMessage } from "element-plus";
 
 import "element-plus/theme-chalk/display.css";
 import { reqSetArticle } from "@/api";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
+const inputFile = ref(null);
+onMounted(() => {
+  inputFile.value.addEventListener("change", function selectedFileChanged() {
+    if (this.files.length === 0) {
+      console.log("请选择文件！");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function fileReadCompleted() {
+      // 当读取完成时，内容只在`reader.result`中
+      // console.log(reader.result);
+      text.value = reader.result;
+    };
+    reader.readAsText(this.files[0]);
+  });
+});
 
 const text = ref("");
 
