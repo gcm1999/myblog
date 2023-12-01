@@ -41,7 +41,7 @@
       <div class="con">
         <div
           class="article"
-          v-for="(article, index) in articleList"
+          v-for="(article) in articleList"
           :key="article.id"
           @click="toArticle(article.url)"
         >
