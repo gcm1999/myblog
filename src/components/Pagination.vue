@@ -11,7 +11,9 @@
     >
       1
     </button>
-    <button class="hidden-xs" v-if="startAndEnd.start > 2">.....</button>
+    <button class="hidden-xs" v-if="startAndEnd.start > 2" disabled>
+      .....
+    </button>
 
     <!-- 中间连续页码的地方:v-for、数组、对象、数字、字符串 -->
     <button
@@ -24,7 +26,7 @@
       {{ page }}
     </button>
 
-    <button v-if="startAndEnd.end < totalPage - 1" class="hidden-xs">
+    <button v-if="startAndEnd.end < totalPage - 1" disabled class="hidden-xs">
       ......
     </button>
     <button

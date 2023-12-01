@@ -36,7 +36,7 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 watch(route, (o, n) => {
-  // console.log({...articleParams});
+  console.log({...articleParams});
   // console.log({ ...route.params });
   articleParams.keyword = route.params.keywords;
   articleList.value = [];

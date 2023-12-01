@@ -6,7 +6,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       "/blogApi": {
-        target: "http://gcm.cool:3001",
+        target: "http://localhost:3001",
         // pathRewrite: {},
         changeOrigin: true,
         ws: false,
