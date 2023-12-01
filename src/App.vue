@@ -2,6 +2,7 @@
   <Header></Header>
   <router-view></router-view>
   <Footer v-show="!($route.meta.hidden)"></Footer>
+  <!-- 测试2 -->
 </template>
 
 <script>
